@@ -8,7 +8,5 @@ public class App {
 
         ana.setTelefones(new Telefone("996555742"));
         ana.setTelefones(new Telefone("996555742"));
-
-        System.out.println(ana.getTelefones());
     }
 }
