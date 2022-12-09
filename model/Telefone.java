@@ -46,6 +46,14 @@ public class Telefone {
         this.tipoTelefone = tipoTelefone;
     }
 
+    public String getTelefoneDetalhado() {
+        String detalhado = "("+ddd+")" + numero + tipoTelefone;
+        if (ddd.isBlank()) {
+            detalhado = numero + tipoTelefone;
+        }
+
+        return detalhado;
+    }
     @Override
     public String toString() {
         return "Telefone{" +

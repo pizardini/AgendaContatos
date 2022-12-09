@@ -6,8 +6,13 @@ import enums.TipoTelefone;
 import model.Contato;
 import util.ConsoleUIHelper;
 
-public class AgendaUI {
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AgendaUI {
+    static List<Contato> agenda = new ArrayList<>();
     public static void menu () {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
                 "Adicionar um novo contato", "Editar um contato", "Listar contatos",
@@ -16,13 +21,27 @@ public class AgendaUI {
         switch (opcao) {
             case 0 -> {
                 adicionarContato();
-                adicionarTelefone();
-                adicionarEndereco();
+                if (ConsoleUIHelper.askConfirm("Você deseja adicionar um telefone?", "sim", "não")) {
+                    System.out.println("entrou");
+                    adicionarTelefone();
+                }
+
+
+                if (ConsoleUIHelper.askConfirm("Você deseja adicionar um endereço?", "sim", "não")) {
+                    adicionarEndereco();
+                }
+
+                System.out.println("Contato adicionado");
+//                exibircontato():
+
             }
-            case 1 -> System.out.println("Número 1");
-            case 2 -> System.out.println("Número 2");
+            case 1 -> System.out.println("editar");
+            case 2 -> {
+                listarContato();
+            }
             case 3 -> System.out.println("Número 3");
             case 4 -> System.out.println("Número 4");
+            case 5 -> System.exit(0);
         }
 
     }
@@ -42,7 +61,12 @@ public class AgendaUI {
         }
 
         Contato contato = new Contato(nome, sobrenome, tipoContato);
+        agenda.add(contato);
+
     }
+//    public static void gravarContato(Contato contato, List<Contato> agenda) {
+//        agenda.add(contato);
+//    }
 
     public static void adicionarTelefone() {
         String ddd = ConsoleUIHelper.askSimpleInput("Digite o DDD");
@@ -62,7 +86,7 @@ public class AgendaUI {
         }
     }
 
-    private static void adicionarEndereco() {
+    public static void adicionarEndereco() {
         String logradouro = ConsoleUIHelper.askSimpleInput("Digite o logradouro");
         String numero = ConsoleUIHelper.askSimpleInput("Digite o número da casa");
         String cidade = ConsoleUIHelper.askSimpleInput("Digite a cidade");
@@ -81,5 +105,15 @@ public class AgendaUI {
         }
     }
 
+    public static void listarContato() {
+        for (int i = 0; i < agenda.size(); i++) {
+            System.out.println(i+1 + " - " + agenda.get(i).getNomeCompleto().trim());
+        }
 
+    }
+    public static void exibirContato() {
+
+        String contatoDetalhado = agenda.get(i).getNome() + "\n" + agenda.
+        ConsoleUIHelper.drawWithPadding(, 80)
+    }
 }

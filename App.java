@@ -10,10 +10,17 @@ public class App {
     public static void main(String[] args) {
 
         ConsoleUIHelper.drawHeader("AGENDA", 80);
-        AgendaUI.menu();
+
+        do  {
+            AgendaUI.menu();
+
+        }
+        while (true);
+
 
 
 
 
     }
+
 }
