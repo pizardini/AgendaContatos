@@ -1,6 +1,6 @@
 package model;
 
-import enums.TipoNome;
+import enums.TipoContato;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Contato {
     
     private String nome;
     private String sobreNome;
-    private TipoNome tipoNome;
+    private TipoContato tipoContato;
 
     private List<Endereco> enderecos;
 
@@ -20,13 +20,13 @@ public class Contato {
     }
 
     public Contato (String nome, String sobreNome) {
-        this(nome, sobreNome, TipoNome.PESSOAL);
+        this(nome, sobreNome, TipoContato.PESSOAL);
     }
 
-    public Contato(String nome, String sobreNome, TipoNome tipoNome) {
+    public Contato(String nome, String sobreNome, TipoContato tipoContato) {
         this.nome = nome;
         this.sobreNome = sobreNome;
-        this.tipoNome = tipoNome;
+        this.tipoContato = tipoContato;
         this.telefones = new ArrayList<>();
         this.enderecos = new ArrayList<>();
     }
@@ -44,11 +44,11 @@ public class Contato {
     public void setSobreNome(String sobreNome) {
         this.sobreNome = sobreNome;
     }
-    public TipoNome getTipoNome() {
-        return tipoNome;
+    public TipoContato getTipoNome() {
+        return tipoContato;
     }
-    public void setTipoNome(TipoNome tipoNome) {
-        this.tipoNome = tipoNome;
+    public void setTipoNome(TipoContato tipoContato) {
+        this.tipoContato = tipoContato;
     }
 
     public List<Endereco> getEnderecos() {
@@ -82,7 +82,7 @@ public class Contato {
         return "Contato{" +
                 "nome='" + nome + '\'' +
                 ", sobreNome='" + sobreNome + '\'' +
-                ", tipoNome=" + tipoNome +
+                ", tipoNome=" + tipoContato +
                 ", enderecos=" + enderecos +
                 ", telefones=" + telefones +
                 '}';
@@ -93,11 +93,11 @@ public class Contato {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contato contato = (Contato) o;
-        return Objects.equals(nome, contato.nome) && Objects.equals(sobreNome, contato.sobreNome) && tipoNome == contato.tipoNome && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+        return Objects.equals(nome, contato.nome) && Objects.equals(sobreNome, contato.sobreNome) && tipoContato == contato.tipoContato && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, sobreNome, tipoNome, enderecos, telefones);
+        return Objects.hash(nome, sobreNome, tipoContato, enderecos, telefones);
     }
 }

@@ -1,5 +1,5 @@
 package enums;
 
-public enum TipoNome {
+public enum TipoContato {
     PESSOAL,PROFISSIONAL;
 }
