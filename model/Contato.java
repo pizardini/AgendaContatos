@@ -2,7 +2,9 @@ package model;
 
 import enums.TipoNome;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Contato {
     
@@ -25,6 +27,8 @@ public class Contato {
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.tipoNome = tipoNome;
+        this.telefones = new ArrayList<>();
+        this.enderecos = new ArrayList<>();
     }
     
     public String getNome() {
@@ -59,15 +63,18 @@ public class Contato {
         return telefones;
     }
 
-    public void setTelefones(Telefone telefone) {
-        for (Telefone item : telefones) {
-            if (!item.equals(telefone)) {
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+
+  /*      for (Telefone item : telefones) {
+
+            if ((telefones.size() == 0) || (!item.equals(telefone))) {
                 this.telefones.add(telefone);
             } else {
                 System.out.println("Telefone já cadastrado.");
                 break;
             }
-        }
+        }*/
     }
 
     @Override
@@ -79,5 +86,18 @@ public class Contato {
                 ", enderecos=" + enderecos +
                 ", telefones=" + telefones +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contato contato = (Contato) o;
+        return Objects.equals(nome, contato.nome) && Objects.equals(sobreNome, contato.sobreNome) && tipoNome == contato.tipoNome && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, sobreNome, tipoNome, enderecos, telefones);
     }
 }

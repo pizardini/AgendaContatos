@@ -1,12 +1,19 @@
 import model.Contato;
 import model.Telefone;
+import ui.AgendaUI;
+import util.ConsoleUIHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
 
-        Contato ana = new Contato("Ana", "Muratori");
+        ConsoleUIHelper.drawHeader("AGENDA", 80);
+        AgendaUI.menu();
 
-        ana.setTelefones(new Telefone("996555742"));
-        ana.setTelefones(new Telefone("996555742"));
+
+
+
     }
 }
