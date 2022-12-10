@@ -70,6 +70,15 @@ public class Endereco {
         this.tipoEndereco = tipoEndereco;
     }
 
+    public String getEnderecosDetalhado() {
+        return (logradouro +" " +
+                numero +" " +
+                cidade +" " +
+                estado +" "+
+                cep +" "+
+                tipoEndereco);
+    }
+
     @Override
     public String toString() {
         return "Endereco{" +

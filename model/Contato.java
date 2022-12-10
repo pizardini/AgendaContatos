@@ -18,10 +18,17 @@ public class Contato {
     private List<Telefone> telefones;
 
     public Contato() {
+        this.telefones = new ArrayList<>();
+        this.enderecos = new ArrayList<>();
     }
 
     public Contato (String nome, String sobreNome) {
         this(nome, sobreNome, TipoContato.PESSOAL);
+    }
+
+    public Contato(String nome, Telefone telefone){
+        this.nome = nome;
+        this.telefones.add(telefone);
     }
 
     public Contato(String nome, String sobreNome, TipoContato tipoContato) {
@@ -35,24 +42,22 @@ public class Contato {
     public String getNome() {
         return nome;
     }
-    
     public void setNome(String nome) {
         this.nome = nome;
     }
     public String getSobreNome() {
         return sobrenome;
     }
-
     public String getNomeCompleto() {
         return nome +" "+ sobrenome;
     }
     public void setSobreNome(String sobreNome) {
         this.sobrenome = sobreNome;
     }
-    public TipoContato getTipoNome() {
+    public TipoContato getTipoContato() {
         return tipoContato;
     }
-    public void setTipoNome(TipoContato tipoContato) {
+    public void setTipoContato(TipoContato tipoContato) {
         this.tipoContato = tipoContato;
     }
 
@@ -70,15 +75,20 @@ public class Contato {
 
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
-
-
     }
 
-    public String getDetalhado() {
-        String detalhado = nome + sobrenome + tipoContato + "\n Telefones: \n" + getTelefoneDetalhado() + "\n Endereços: \n" + enderecos.getEnderecosDetalhado();
 
-    return detalhado;
+    public void addTelefone(Telefone telefone) {
+        this.telefones.add(telefone);
     }
+
+//    public String getDetalhado() {
+//        String detalhado = nome + sobrenome + tipoContato +
+//                "\n Telefones: \n" + telefones.getTelefoneDetalhado();
+//                "\n Endereços: \n" + enderecos.getEnderecosDetalhado();
+//
+//    return detalhado;
+//    }
     @Override
     public String toString() {
         return "Contato{" +

@@ -4,15 +4,16 @@ import enums.TipoContato;
 import enums.TipoEndereco;
 import enums.TipoTelefone;
 import model.Contato;
+import model.Telefone;
 import util.ConsoleUIHelper;
 
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaUI {
-    static List<Contato> agenda = new ArrayList<>();
+   static List<Contato> agenda = new ArrayList<>();
+   static Contato contato = new Contato();
     public static void menu () {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
                 "Adicionar um novo contato", "Editar um contato", "Listar contatos",
@@ -20,10 +21,10 @@ public class AgendaUI {
 
         switch (opcao) {
             case 0 -> {
-                adicionarContato();
+                adicionarContato(contato);
                 if (ConsoleUIHelper.askConfirm("Você deseja adicionar um telefone?", "sim", "não")) {
-                    System.out.println("entrou");
-                    adicionarTelefone();
+
+                    adicionarTelefone(contato);
                 }
 
 
@@ -46,9 +47,7 @@ public class AgendaUI {
 
     }
 
-
-
-    public static void adicionarContato() {
+    public static void adicionarContato(Contato contato) {
         String nome = ConsoleUIHelper.askNoEmptyInput("Digite o nome do seu contato.", 3);
         String sobrenome = ConsoleUIHelper.askNoEmptyInput("Digite o sobrenome do seu contato.", 3);
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do seu contato", "Pessoal", "Profissional");
@@ -60,19 +59,20 @@ public class AgendaUI {
             tipoContato = TipoContato.PROFISSIONAL;
         }
 
-        Contato contato = new Contato(nome, sobrenome, tipoContato);
+        contato.setNome(nome);
+        contato.setSobreNome(sobrenome);
+        contato.setTipoContato(tipoContato);
         agenda.add(contato);
-
     }
 //    public static void gravarContato(Contato contato, List<Contato> agenda) {
 //        agenda.add(contato);
 //    }
 
-    public static void adicionarTelefone() {
+    public static void adicionarTelefone(Contato contato) {
+        TipoTelefone tipoTelefone = TipoTelefone.CELULAR;
         String ddd = ConsoleUIHelper.askSimpleInput("Digite o DDD");
         String numero = ConsoleUIHelper.askNoEmptyInput("Digite o número.", 3);
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do número", "Celular", "Residencial", "Comercial");
-        TipoTelefone tipoTelefone;
         switch (tipo) {
             case 0 -> {
                 tipoTelefone = TipoTelefone.CELULAR;
@@ -84,6 +84,10 @@ public class AgendaUI {
                 tipoTelefone = TipoTelefone.COMERCIAL;
             }
         }
+        Telefone telefone = new Telefone(ddd, numero, tipoTelefone);
+
+    // Checar duplicidade do telefone neste contato
+        contato.addTelefone(telefone);
     }
 
     public static void adicionarEndereco() {
@@ -111,9 +115,9 @@ public class AgendaUI {
         }
 
     }
-    public static void exibirContato() {
-
-        String contatoDetalhado = agenda.get(i).getNome() + "\n" + agenda.
-        ConsoleUIHelper.drawWithPadding(, 80)
-    }
+//    public static void exibirContato(List<Contato> agenda) {
+//
+//        String contatoDetalhado = agenda.get().getDetalhado();
+//        ConsoleUIHelper.drawWithPadding(contatoDetalhado, 80);
+//    }
 }

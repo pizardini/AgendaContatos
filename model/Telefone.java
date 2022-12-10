@@ -51,7 +51,6 @@ public class Telefone {
         if (ddd.isBlank()) {
             detalhado = numero + tipoTelefone;
         }
-
         return detalhado;
     }
     @Override
