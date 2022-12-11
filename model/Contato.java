@@ -129,6 +129,25 @@ public class Contato {
        return exibirEnderecos;
   }
 
+  public boolean checarTelefone(Telefone telefone) {
+      for (Telefone item: telefones) {
+          if (item.equals(telefone)) {
+              System.out.println("Telefone já cadastrado neste contato");
+              return false;
+          }//comparando com objeto, ou seja mesmo telefone de tipos diferentes são diferentes.
+      }
+      return true;
+  }
+
+    public boolean checarEndereco(Endereco endereco) {
+        for (Endereco item: enderecos) {
+            if (item.equals(endereco)) {
+                System.out.println("Endereço já cadastrado neste contato");
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public String toString() {

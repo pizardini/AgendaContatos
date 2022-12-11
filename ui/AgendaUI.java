@@ -83,7 +83,7 @@ public class AgendaUI {
                             exibirContato(agenda.get(idContato));
                         }
                     }
-                    case 6 -> {//Adicionar um endereço a um contato
+                    case 2 -> {//Adicionar um endereço a um contato
                         if(agendaNaoVazia()){
                             listarContato();
                             Contato contato = agenda.get(idContato);
@@ -91,7 +91,7 @@ public class AgendaUI {
                             exibirContato(agenda.get(idContato));
                         }
                     }
-                    case 8 -> {//Remover um endereço de um contato da agenda
+                    case 3 -> {//Remover um endereço de um contato da agenda
                         if(agendaNaoVazia()){
                             listarContato();
                             removerEndereco(agenda.get(idContato));
@@ -282,10 +282,9 @@ public class AgendaUI {
             }
         }
         Telefone telefone = new Telefone(ddd, numero, tipoTelefone);
-
-    // Checar duplicidade do telefone neste contato
-
-        agenda.get(contatoPosition(contato)).addTelefone(telefone);
+        if (contato.checarTelefone(telefone)) {
+            agenda.get(contatoPosition(contato)).addTelefone(telefone);
+        }
     }
 
     public static int contatoPosition(Contato contato) {
@@ -300,25 +299,27 @@ public class AgendaUI {
 
 
     public static void adicionarEndereco(Contato contato) {
-        // String logradouro = ConsoleUIHelper.askSimpleInput("Digite o logradouro");
-        // String numero = ConsoleUIHelper.askSimpleInput("Digite o número da casa");
+         String logradouro = ConsoleUIHelper.askSimpleInput("Digite o logradouro");
+         String numero = ConsoleUIHelper.askSimpleInput("Digite o número da casa");
         String cidade = ConsoleUIHelper.askSimpleInput("Digite a cidade");
         String estado = ConsoleUIHelper.askSimpleInput("Digite o estado");
-        // String cep = ConsoleUIHelper.askSimpleInput("Digite o CEP");
-        // int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do endereço", "Residencial","Comercial","Deixar em branco");
-        // TipoEndereco tipoEndereco;
-        // switch (tipo) {
-        //     case 0 -> {
-        //         tipoEndereco = TipoEndereco.RESIDENCIAL;
-        //     }
-        //     case 1 -> {
-        //         tipoEndereco = TipoEndereco.COMERCIAL;
-        //     }
-        //     case 2 -> System.out.println("endereço em branco");
-        // }
+         String cep = ConsoleUIHelper.askSimpleInput("Digite o CEP");
+         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do endereço", "Residencial","Comercial","Deixar em branco");
+         TipoEndereco tipoEndereco;
+         switch (tipo) {
+             case 0 -> {
+                 tipoEndereco = TipoEndereco.RESIDENCIAL;
+             }
+             case 1 -> {
+                 tipoEndereco = TipoEndereco.COMERCIAL;
+             }
+             case 2 -> System.out.println("endereço em branco");
+         }
 
         Endereco endereco = new Endereco(cidade, estado);
-        agenda.get(contatoPosition(contato)).addEndereco(endereco);
+        if (contato.checarEndereco(endereco)) {
+            agenda.get(contatoPosition(contato)).addEndereco(endereco);
+        }
     }
 
     public static void listarContato() {
