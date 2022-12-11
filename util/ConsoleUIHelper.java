@@ -66,6 +66,20 @@ public class ConsoleUIHelper {
         return number;
     }
 
+    public static Integer askInt(String message) {
+        System.out.printf("%s%n# : ", message);
+        Scanner sc = new Scanner(System.in);
+        Integer number;
+        do {
+            try {
+                number = sc.nextInt();
+            } catch (InputMismatchException e) {
+                number = null;
+            }
+        } while (number == null);
+        return number;
+    }
+    
     public static int drawWithRightPadding(String text, int width, char pad) {
         int count = 0;
         do {

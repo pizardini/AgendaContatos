@@ -47,7 +47,7 @@ public class Telefone {
     }
 
     public String getTelefoneDetalhado() {
-        String detalhado = "("+ddd+")" + numero + tipoTelefone;
+        String detalhado = "("+ddd+") " + numero +" "+ tipoTelefone;
         if (ddd.isBlank()) {
             detalhado = numero + tipoTelefone;
         }

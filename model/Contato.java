@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import model.Telefone;
+import ui.AgendaUI;
 
 public class Contato {
     
@@ -49,7 +50,9 @@ public class Contato {
         return sobrenome;
     }
     public String getNomeCompleto() {
-        return nome +" "+ sobrenome;
+        String nomeCompleto = nome +" "+ sobrenome ;
+        nomeCompleto = nomeCompleto.trim();
+        return nomeCompleto;
     }
     public void setSobreNome(String sobreNome) {
         this.sobrenome = sobreNome;
@@ -82,13 +85,24 @@ public class Contato {
         this.telefones.add(telefone);
     }
 
-//    public String getDetalhado() {
-//        String detalhado = nome + sobrenome + tipoContato +
-//                "\n Telefones: \n" + telefones.getTelefoneDetalhado();
-//                "\n Endereços: \n" + enderecos.getEnderecosDetalhado();
-//
-//    return detalhado;
-//    }
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
+
+   public String exibirContato() {
+        String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
+        String exibirTelefones="Telefones \n";
+        String exibirEnderecos="Endereços \n";
+        for (int i = 0; i < telefones.size(); i++) {
+            exibirTelefones += telefones.get(i).getTelefoneDetalhado();
+        }
+        for (int i = 0; i < enderecos.size(); i++) {
+            exibirEnderecos += enderecos.get(i).getEnderecosDetalhado();
+        }
+        String contatoDetalhado=exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+   return contatoDetalhado;
+   }
+
     @Override
     public String toString() {
         return "Contato{" +
