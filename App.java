@@ -14,6 +14,7 @@ public class App {
         ConsoleUIHelper.fillVSpace(0, 80);
 
         do  {
+
             AgendaUI.menu();
 
         }

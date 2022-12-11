@@ -85,6 +85,9 @@ public class Endereco {
                 tipoEndereco);
     }
     
+    public String getEnderecosSimples() {
+        return (estado +" " + cidade +" ");
+    }
 
     @Override
     public String toString() {

@@ -25,10 +25,14 @@ public class AgendaUI {
     public static void menu () {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato","Remover contato", "Remover todos os contatos",
-        "Exibir informações de um contato da agenda;","Sair da agenda");
+        "Adicionar um telefone a um contato","Adicionar um endereço a um contato","Remover um telefone de um contato da agenda",
+        "Remover um endereço de um contato da agenda", "Exibir informações de um contato da agenda",
+        "Listar todos os telefones de um contato","Listar todos os endereços de um contato",
+        "Exibir todas as informações de um telefone de um contato","Exibir todas as informações de um endereço de um contato ",
+        "Sair da agenda");
         
         switch (opcao) {
-            case 0 -> {
+            case 0 -> {//add contato
                     Contato contato = new Contato();
                     contato = adicionarContato(contato);
                     if (ConsoleUIHelper.askConfirm("Você deseja adicionar um telefone?", "sim", "não")) {
@@ -39,21 +43,23 @@ public class AgendaUI {
                     }
                     System.out.println("Contato adicionado");
                 }
-            case 1 -> {
-                listarContato();
+            case 1 -> {//listar contatos por nome completo
+                if(agendaNaoVazia()){
+                    listarContato();
+                }
             }
-            case 2 -> {
-                String palavraAProcurar = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato a ser buscado", 3);
-                buscarContato(palavraAProcurar);
+            case 2 -> {//buscar contato
+                if(agendaNaoVazia()){
+                    String palavraAProcurar = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato a ser buscado", 3);
+                    buscarContato(palavraAProcurar);
+                }
             }
             case 3 -> { //remover 1 contato
                 ConsoleUIHelper.fillVSpace(0, 80);
-                if (agenda.size() > 0) {
+                if (agendaNaoVazia()) {
                     listarContato();
                     Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser removido") -1;
                     removerContato(idContato);
-                } else{
-                    System.out.println("Não há contatos na agenda");
                 }
             } 
             
@@ -64,15 +70,123 @@ public class AgendaUI {
                 }
 
             }
-            case 5 -> {
-                listarContato();
-                Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
-                exibirContato(agenda.get(idContato));
+            case 5 -> {//adicionar um telefone a um contato;
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser adicionado o telefone") -1;
+                    Contato contato = agenda.get(idContato);
+                    adicionarTelefone(contato);
+                }
+            }
+            case 6 -> {//Adicionar um endereço a um contato
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser adicionado o endereço") -1;
+                    Contato contato = agenda.get(idContato);
+                    adicionarEndereco(contato);
+                }
+            }
+            case 7 -> {//Remover um telefone de um contato da agenda
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser excluído o telefone") -1;
+                    removerTelefone(agenda.get(idContato));
+                    
+                }
+            }
+            case 8 -> {//Remover um endereço de um contato da agenda
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser excluído o endereço") -1;
+                    removerEndereco(agenda.get(idContato));
+                }
+            }
+            case 9 -> {//Exibir informações de um contato da agenda
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
+                    exibirContato(agenda.get(idContato));
+                }
+            }
+            case 10 ->{//Listar todos os telefones de um contato
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
+                    System.out.println(agenda.get(idContato).listarTelefones());
+                }
                 
             }
-            case 6 -> System.exit(0);
+            case 11 ->{//Listar todos os endereços de um contato
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
+                    System.out.println(agenda.get(idContato).listarEnderecos());
+                }
+            }
+            case 12 ->{//Exibir todas as informações de um telefone de um contato
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
+                    System.out.println(agenda.get(idContato).exibirTelefones());
+                }
+            }
+            case 13 ->{//Exibir todas as informações de um endereço de um contato
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato") -1;
+                    System.out.println(agenda.get(idContato).exibirEnderecos());
+                }
+            }
+            case 14 -> System.exit(0);
         }
 
+    }
+
+    public static void removerEndereco(Contato contato) {
+        if(contato.getEnderecos().size() > 0){
+            List<Endereco> enderecosTemp = new ArrayList<>();
+            System.out.println(contato.exibirEnderecos());
+
+            Integer idEndereco = ConsoleUIHelper.askInt("Digite o ID do endereço a ser removido") ;
+            contato.getEnderecos().set(idEndereco,null);
+            for (Endereco item : contato.getEnderecos()) {
+                if(item != null){
+                    enderecosTemp.add(item);
+                }
+            }
+            contato.setEnderecos(enderecosTemp);
+
+        } else {
+            System.out.println("Esse contato não possui endereços cadastrados");
+        }
+    }
+
+    public static void removerTelefone(Contato contato) {
+        if(contato.getTelefones().size()>0){
+            List<Telefone> telefonestemp= new ArrayList<>();
+            System.out.println(contato.exibirTelefones());
+            Integer idTelefone = ConsoleUIHelper.askInt("Digite o ID do telefone a ser removido") ;
+            contato.getTelefones().set(idTelefone,null);
+            for (Telefone item : contato.getTelefones()) {
+                if(item != null){
+                    telefonestemp.add(item);
+                }
+            }
+            contato.setTelefones(telefonestemp);
+        } else {
+            System.out.println("Esse contato não possui telefones cadastrados");
+        }
+
+    }
+
+    public static boolean agendaNaoVazia() {
+        if(agenda.size()>0){
+            return true;
+        }
+        else {
+            System.out.println("Não há contatos na agenda");
+            return false;
+        }
     }
 
     public static void removerContato(Integer idARemover) {
@@ -192,12 +306,8 @@ public class AgendaUI {
     }
 
     public static void exibirContato(Contato contato) {
-        System.out.println(contato.exibirContato());
+        String exibir = contato.exibirContato();
+        ConsoleUIHelper.drawWithPadding(exibir, 80);
         
     }
-//    public static void exibirContato(List<Contato> agenda) {
-//
-//        String contatoDetalhado = agenda.get().getDetalhado();
-//        ConsoleUIHelper.drawWithPadding(contatoDetalhado, 80);
-//    }
 }

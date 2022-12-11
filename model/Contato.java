@@ -89,19 +89,46 @@ public class Contato {
         this.enderecos.add(endereco);
     }
 
-   public String exibirContato() {
-        String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
-        String exibirTelefones="Telefones \n";
-        String exibirEnderecos="Endereços \n";
+    public String exibirContato() {
+            String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
+            String exibirTelefones="Telefones \n" + exibirTelefones();
+            String exibirEnderecos="Endereços \n" + exibirEnderecos();
+            String contatoDetalhado= exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+    return contatoDetalhado;
+    }
+
+    public String exibirTelefones() {
+        String exibirTelefones="";
         for (int i = 0; i < telefones.size(); i++) {
-            exibirTelefones += telefones.get(i).getTelefoneDetalhado();
+            exibirTelefones += i+" - "+ telefones.get(i).getTelefoneDetalhado() +"\n";
         }
-        for (int i = 0; i < enderecos.size(); i++) {
-            exibirEnderecos += enderecos.get(i).getEnderecosDetalhado();
-        }
-        String contatoDetalhado=exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
-   return contatoDetalhado;
+        return exibirTelefones;
    }
+   
+   public String listarTelefones() {
+       String exibirTelefones="";
+       for (int i = 0; i < telefones.size(); i++) {
+           exibirTelefones += i+" - "+ telefones.get(i).getTelefoneSimples() +"\n";
+       }
+       return exibirTelefones;
+  }
+
+    public String exibirEnderecos(){
+        String exibirEnderecos="";
+        for (int i = 0; i < enderecos.size(); i++) {
+            exibirEnderecos += i +" - "+ enderecos.get(i).getEnderecosDetalhado() +"\n";
+        }
+        return exibirEnderecos;
+   }
+   
+   public String listarEnderecos(){
+       String exibirEnderecos="";
+       for (int i = 0; i < enderecos.size(); i++) {
+           exibirEnderecos += i +" - "+ enderecos.get(i).getEnderecosSimples() +"\n";
+       }
+       return exibirEnderecos;
+  }
+
 
     @Override
     public String toString() {

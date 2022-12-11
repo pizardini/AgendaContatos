@@ -53,6 +53,15 @@ public class Telefone {
         }
         return detalhado;
     }
+
+    public String getTelefoneSimples(){
+        String telefoneSimples = "("+ddd+") " + numero;
+        if (ddd.isBlank()) {
+            telefoneSimples = numero;
+        }
+        return telefoneSimples;
+    }
+
     @Override
     public String toString() {
         return "Telefone{" +
