@@ -305,7 +305,7 @@ public class AgendaUI {
         String estado = ConsoleUIHelper.askSimpleInput("Digite o estado");
          String cep = ConsoleUIHelper.askSimpleInput("Digite o CEP");
          int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do endereço", "Residencial","Comercial","Deixar em branco");
-         TipoEndereco tipoEndereco;
+         TipoEndereco tipoEndereco = TipoEndereco.RESIDENCIAL;
          switch (tipo) {
              case 0 -> {
                  tipoEndereco = TipoEndereco.RESIDENCIAL;
@@ -316,7 +316,7 @@ public class AgendaUI {
              case 2 -> System.out.println("endereço em branco");
          }
 
-        Endereco endereco = new Endereco(cidade, estado);
+        Endereco endereco = new Endereco(cep, logradouro, numero, cidade, estado, tipoEndereco);
         if (contato.checarEndereco(endereco)) {
             agenda.get(contatoPosition(contato)).addEndereco(endereco);
         }

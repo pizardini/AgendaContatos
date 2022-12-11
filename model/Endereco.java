@@ -2,6 +2,8 @@ package model;
 
 import enums.TipoEndereco;
 
+import java.util.Objects;
+
 public class Endereco {
     private String cep;
     private String logradouro;
@@ -99,5 +101,18 @@ public class Endereco {
                 ", estado='" + estado + '\'' +
                 ", tipoEndereco=" + tipoEndereco +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(cep, endereco.cep) && Objects.equals(logradouro, endereco.logradouro) && Objects.equals(numero, endereco.numero) && Objects.equals(cidade, endereco.cidade) && Objects.equals(estado, endereco.estado) && tipoEndereco == endereco.tipoEndereco;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep, logradouro, numero, cidade, estado, tipoEndereco);
     }
 }
