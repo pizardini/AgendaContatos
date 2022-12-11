@@ -47,13 +47,21 @@ public class Telefone {
     }
 
     public String getTelefoneDetalhado() {
-        String detalhado = "("+ddd+")" + numero + tipoTelefone;
+        String detalhado = "("+ddd+") " + numero +" "+ tipoTelefone;
         if (ddd.isBlank()) {
             detalhado = numero + tipoTelefone;
         }
-
         return detalhado;
     }
+
+    public String getTelefoneSimples(){
+        String telefoneSimples = "("+ddd+") " + numero;
+        if (ddd.isBlank()) {
+            telefoneSimples = numero;
+        }
+        return telefoneSimples;
+    }
+
     @Override
     public String toString() {
         return "Telefone{" +

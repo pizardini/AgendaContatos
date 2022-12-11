@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import model.Telefone;
+import ui.AgendaUI;
 
 public class Contato {
     
@@ -18,10 +19,17 @@ public class Contato {
     private List<Telefone> telefones;
 
     public Contato() {
+        this.telefones = new ArrayList<>();
+        this.enderecos = new ArrayList<>();
     }
 
     public Contato (String nome, String sobreNome) {
         this(nome, sobreNome, TipoContato.PESSOAL);
+    }
+
+    public Contato(String nome, Telefone telefone){
+        this.nome = nome;
+        this.telefones.add(telefone);
     }
 
     public Contato(String nome, String sobreNome, TipoContato tipoContato) {
@@ -35,24 +43,24 @@ public class Contato {
     public String getNome() {
         return nome;
     }
-    
     public void setNome(String nome) {
         this.nome = nome;
     }
     public String getSobreNome() {
         return sobrenome;
     }
-
     public String getNomeCompleto() {
-        return nome +" "+ sobrenome;
+        String nomeCompleto = nome +" "+ sobrenome ;
+        nomeCompleto = nomeCompleto.trim();
+        return nomeCompleto;
     }
     public void setSobreNome(String sobreNome) {
         this.sobrenome = sobreNome;
     }
-    public TipoContato getTipoNome() {
+    public TipoContato getTipoContato() {
         return tipoContato;
     }
-    public void setTipoNome(TipoContato tipoContato) {
+    public void setTipoContato(TipoContato tipoContato) {
         this.tipoContato = tipoContato;
     }
 
@@ -70,15 +78,58 @@ public class Contato {
 
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
-
-
     }
 
-    public String getDetalhado() {
-        String detalhado = nome + sobrenome + tipoContato + "\n Telefones: \n" + getTelefoneDetalhado() + "\n Endereços: \n" + enderecos.getEnderecosDetalhado();
 
-    return detalhado;
+    public void addTelefone(Telefone telefone) {
+        this.telefones.add(telefone);
     }
+
+    public void addEndereco(Endereco endereco) {
+        this.enderecos.add(endereco);
+    }
+
+    public String exibirContato() {
+            String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
+            String exibirTelefones="Telefones \n" + exibirTelefones();
+            String exibirEnderecos="Endereços \n" + exibirEnderecos();
+            String contatoDetalhado= exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+    return contatoDetalhado;
+    }
+
+    public String exibirTelefones() {
+        String exibirTelefones="";
+        for (int i = 0; i < telefones.size(); i++) {
+            exibirTelefones += i+" - "+ telefones.get(i).getTelefoneDetalhado() +"\n";
+        }
+        return exibirTelefones;
+   }
+   
+   public String listarTelefones() {
+       String exibirTelefones="";
+       for (int i = 0; i < telefones.size(); i++) {
+           exibirTelefones += i+" - "+ telefones.get(i).getTelefoneSimples() +"\n";
+       }
+       return exibirTelefones;
+  }
+
+    public String exibirEnderecos(){
+        String exibirEnderecos="";
+        for (int i = 0; i < enderecos.size(); i++) {
+            exibirEnderecos += i +" - "+ enderecos.get(i).getEnderecosDetalhado() +"\n";
+        }
+        return exibirEnderecos;
+   }
+   
+   public String listarEnderecos(){
+       String exibirEnderecos="";
+       for (int i = 0; i < enderecos.size(); i++) {
+           exibirEnderecos += i +" - "+ enderecos.get(i).getEnderecosSimples() +"\n";
+       }
+       return exibirEnderecos;
+  }
+
+
     @Override
     public String toString() {
         return "Contato{" +

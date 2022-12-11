@@ -21,6 +21,12 @@ public class Endereco {
         this.estado = estado;
         this.tipoEndereco = tipoEndereco;
     }
+    
+
+    public Endereco(String cidade, String estado) {
+        this.cidade = cidade;
+        this.estado = estado;
+    }
 
     public String getCep() {
         return cep;
@@ -68,6 +74,19 @@ public class Endereco {
 
     public void setTipoEndereco(TipoEndereco tipoEndereco) {
         this.tipoEndereco = tipoEndereco;
+    }
+
+    public String getEnderecosDetalhado() {
+        return (logradouro +" " +
+                numero +" " +
+                cidade +" " +
+                estado +" "+
+                cep +" "+
+                tipoEndereco);
+    }
+    
+    public String getEnderecosSimples() {
+        return (estado +" " + cidade +" ");
     }
 
     @Override
