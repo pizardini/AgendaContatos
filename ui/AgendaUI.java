@@ -44,13 +44,19 @@ public class AgendaUI {
             case 1 -> {//listar contatos por nome completo
                 if(agendaNaoVazia()){
                     listarContato();
+                    boolean detalhar = ConsoleUIHelper.askConfirm("Deseja detalhar algum contato", "sim", "não");
+                    if (detalhar){
+                        Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser detalhado") -1;
+                        exibirContato(agenda.get(idContato));
+                    }
                 }
             }
             case 2 -> {//buscar contato
                 if(agendaNaoVazia()){
                     String palavraAProcurar = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato a ser buscado", 3);
                     buscarContato(palavraAProcurar);
-                    // mostrar ID
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser detalhado") -1;
+                    exibirContato(agenda.get(idContato));
                 }
             }
             
@@ -156,6 +162,7 @@ public class AgendaUI {
     }
 
     public static void removerEndereco(Contato contato) {
+        // ********** testa funcao
         if(contato.getEnderecos().size() > 0){
             List<Endereco> enderecosTemp = new ArrayList<>();
             System.out.println(contato.exibirEnderecos());
@@ -175,7 +182,7 @@ public class AgendaUI {
     }
 
     public static void removerTelefone(Contato contato) {
-        if(contato.getTelefones().size()!=0){
+        if(contato.getTelefones().size()>0){
             List<Telefone> telefonestemp= new ArrayList<>();
             System.out.println(contato.exibirTelefones());
             Integer idTelefone = ConsoleUIHelper.askInt("Digite o ID do telefone a ser removido") ;
@@ -225,11 +232,13 @@ public class AgendaUI {
             System.out.println("Nenhum contato foi encontrado");
         } else if (contatosEncontrados.size() == 1){
             System.out.println("Foi encontrado 1 contato");
-            System.out.println(contatosEncontrados.get(0).getNomeCompleto());
+            int posicao = contatoPosition(contatosEncontrados.get(0));
+            System.out.println(posicao + " - "+ contatosEncontrados.get(0).getNomeCompleto());
         } else{
             System.out.printf("Foram encontrados %d contatos\n",contatosEncontrados.size());
             for (int i = 0; i < contatosEncontrados.size(); i++) {
-                System.out.println(i + " - " +contatosEncontrados.get(i).getNomeCompleto());
+                int posicao = contatoPosition(contatosEncontrados.get(i));
+                System.out.println(posicao + " - " +contatosEncontrados.get(i).getNomeCompleto());
             }
 
         }
@@ -314,7 +323,9 @@ public class AgendaUI {
 
     public static void listarContato() {
         for (int i = 0; i < agenda.size(); i++) {
-            System.out.println(i+1 + " - " + agenda.get(i).getNomeCompleto());
+            ConsoleUIHelper.drawWithRightPadding("", 80, '#');
+            ConsoleUIHelper.fillVSpace(0, 80);
+            System.out.println(i+1 + " - " + agenda.get(i).getNomeCompleto()+"\n");
         }
     }
 
