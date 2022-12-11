@@ -257,8 +257,12 @@ public class AgendaUI {
             tipoContato = TipoContato.PROFISSIONAL;
         }
         contato = new Contato(nome, sobrenome, tipoContato);
-        
-        agenda.add(contato);
+
+        if (checarContato(contato)) {
+            agenda.add(contato);
+        } else {
+            menu();
+        }
         return contato;
     }
 //    public static void gravarContato(Contato contato, List<Contato> agenda) {
@@ -335,5 +339,15 @@ public class AgendaUI {
         System.out.println(exibir);
         // ConsoleUIHelper.drawWithPadding(exibir, 80);
         
+    }
+
+    public static boolean checarContato(Contato contato) {
+        for (Contato item: agenda) {
+            if (item.equals(contato)) {
+                System.out.println("Contato já cadastrado nesta agenda");
+                return false;
+            }
+        }
+        return true;
     }
 }
