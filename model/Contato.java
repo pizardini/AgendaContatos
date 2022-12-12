@@ -23,7 +23,7 @@ public class Contato {
     }
 
     public Contato (String nome, String sobreNome) {
-        this(nome, sobreNome, TipoContato.Pessoal);
+        this(nome, sobreNome, TipoContato.PESSOAL);
     }
 
     public Contato(String nome, Telefone telefone){

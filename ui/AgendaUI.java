@@ -67,46 +67,47 @@ public class AgendaUI {
             }
 
             case 3 -> {//editar contato
-                listarContato();
-                Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser editado") -1;
-                exibirContato(agenda.get(idContato));
-                int opcaoEditar = ConsoleUIHelper.askChooseOption("Digite a opção desejada:"
-                ,"adicionar um telefone do contato","remover um telefone do contato",
-                "adicionar um endereço do contato","remover um endereço do contato");
-                switch (opcaoEditar){
-                    case 0 ->{//adicionar um telefone a um contato;
-                        if(agendaNaoVazia()){
-                            // listarContato();
-                            Contato contato = agenda.get(idContato);
-                            adicionarTelefone(contato);
-                            exibirContato(agenda.get(idContato));
+                if(agendaNaoVazia()){
+                    listarContato();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser editado") -1;
+                    exibirContato(agenda.get(idContato));
+                    int opcaoEditar = ConsoleUIHelper.askChooseOption("Digite a opção desejada:"
+                    ,"adicionar um telefone do contato","remover um telefone do contato",
+                    "adicionar um endereço do contato","remover um endereço do contato");
+                    switch (opcaoEditar){
+                        case 0 ->{//adicionar um telefone a um contato;
+                            if(agendaNaoVazia()){
+                                // listarContato();
+                                Contato contato = agenda.get(idContato);
+                                adicionarTelefone(contato);
+                                exibirContato(agenda.get(idContato));
+                            }
                         }
-                    }
-                    case 1 -> {//Remover um telefone de um contato da agenda
-                        if(agendaNaoVazia()){
-                            // listarContato();
-                            removerTelefone(agenda.get(idContato));
-                            exibirContato(agenda.get(idContato));
+                        case 1 -> {//Remover um telefone de um contato da agenda
+                            if(agendaNaoVazia()){
+                                // listarContato();
+                                removerTelefone(agenda.get(idContato));
+                                exibirContato(agenda.get(idContato));
+                            }
                         }
-                    }
-                    case 2 -> {//Adicionar um endereço a um contato
-                        if(agendaNaoVazia()){
-                            listarContato();
-                            Contato contato = agenda.get(idContato);
-                            adicionarEndereco(contato);
-                            exibirContato(agenda.get(idContato));
+                        case 2 -> {//Adicionar um endereço a um contato
+                            if(agendaNaoVazia()){
+                                listarContato();
+                                Contato contato = agenda.get(idContato);
+                                adicionarEndereco(contato);
+                                exibirContato(agenda.get(idContato));
+                            }
                         }
-                    }
-                    case 3 -> {//Remover um endereço de um contato da agenda
-                        if(agendaNaoVazia()){
-                            listarContato();
-                            removerEndereco(agenda.get(idContato));
-                            exibirContato(agenda.get(idContato));
+                        case 3 -> {//Remover um endereço de um contato da agenda
+                            if(agendaNaoVazia()){
+                                listarContato();
+                                removerEndereco(agenda.get(idContato));
+                                exibirContato(agenda.get(idContato));
+                            }
                         }
-                    }
 
+                    }
                 }
-
             }
             case 4 -> { //remover 1 contato
                 if (agendaNaoVazia()) {
@@ -135,10 +136,10 @@ public class AgendaUI {
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo de contato: ", "Pessoal", "Profissional");
         TipoContato tipoContato;
         if (tipo == 0) {
-            tipoContato = TipoContato.Pessoal;
+            tipoContato = TipoContato.PESSOAL;
         }
         else {
-            tipoContato = TipoContato.Profissional;
+            tipoContato = TipoContato.PROFISSIONAL;
         }
         contato = new Contato(nome, sobrenome, tipoContato);
 
@@ -149,19 +150,19 @@ public class AgendaUI {
     }
 
     public static void adicionarTelefone(Contato contato) {
-        TipoTelefone tipoTelefone = TipoTelefone.Celular;
+        TipoTelefone tipoTelefone = TipoTelefone.CELULAR;
         String ddd = ConsoleUIHelper.askSimpleInput("Digite o DDD: ");
         String numero = ConsoleUIHelper.askNoEmptyInput("Digite o número: ", 3);
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo de Telefone: ", "Celular", "Residencial", "Comercial");
         switch (tipo) {
             case 0 -> {
-                tipoTelefone = TipoTelefone.Celular;
+                tipoTelefone = TipoTelefone.CELULAR;
             }
             case 1 -> {
-                tipoTelefone = TipoTelefone.Residencial;
+                tipoTelefone = TipoTelefone.RESIDENCIAL;
             }
             case 2 -> {
-                tipoTelefone = TipoTelefone.Comercial;
+                tipoTelefone = TipoTelefone.COMERCIAL;
             }
         }
         Telefone telefone = new Telefone(ddd, numero, tipoTelefone);
@@ -177,13 +178,13 @@ public class AgendaUI {
         String estado = ConsoleUIHelper.askSimpleInput("Digite o estado: ");
         String cep = ConsoleUIHelper.askSimpleInput("Digite o CEP: ");
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo do endereço: ", "Residencial","Comercial","Deixar em branco");
-        TipoEndereco tipoEndereco = TipoEndereco.Residencial;
+        TipoEndereco tipoEndereco = TipoEndereco.RESIDENCIAL;
         switch (tipo) {
             case 0 -> {
-                tipoEndereco = TipoEndereco.Residencial;
+                tipoEndereco = TipoEndereco.RESIDENCIAL;
             }
             case 1 -> {
-                tipoEndereco = TipoEndereco.Comercial;
+                tipoEndereco = TipoEndereco.COMERCIAL;
             }
             case 2 -> System.out.println("endereço em branco");
         }
@@ -218,7 +219,7 @@ public class AgendaUI {
             }
             contato.setTelefones(telefonestemp);
         } else {
-            System.out.println("Esse contato não possui telefones cadastrados");
+            ConsoleUIHelper.drawHeader("Esse contato não possui telefones cadastrados", 80);
         }
 
     }
@@ -239,7 +240,7 @@ public class AgendaUI {
             contato.setEnderecos(enderecosTemp);
 
         } else {
-            System.out.println("Esse contato não possui endereços cadastrados");
+            ConsoleUIHelper.drawHeader("Esse contato não possui endereços cadastrados", 80);
         }
     }
     public static void listarContato() {
@@ -262,12 +263,12 @@ public class AgendaUI {
             System.out.println("Nenhum contato foi encontrado.");
         } else if (contatosEncontrados.size() == 1){
             System.out.println("Foi encontrado 1 contato.");
-            int posicao = contatoPosition(contatosEncontrados.get(0));
-            System.out.println(posicao + " - "+ contatosEncontrados.get(0).getNomeCompleto());
+            int posicao = contatoPosition(contatosEncontrados.get(0))+1;
+            System.out.println(posicao  + " - "+ contatosEncontrados.get(0).getNomeCompleto());
         } else{
             System.out.printf("Foram encontrados %d contatos.\n",contatosEncontrados.size());
             for (int i = 0; i < contatosEncontrados.size(); i++) {
-                int posicao = contatoPosition(contatosEncontrados.get(i));
+                int posicao = contatoPosition(contatosEncontrados.get(i))+1;
                 System.out.println(posicao + " - " +contatosEncontrados.get(i).getNomeCompleto());
             }
 

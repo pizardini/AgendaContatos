@@ -13,7 +13,7 @@ public class Telefone {
     }
 
     public Telefone (String numero) {
-        this ("", numero, TipoTelefone.Celular);
+        this ("", numero, TipoTelefone.CELULAR);
     }
 
     public Telefone(String ddd, String numero, TipoTelefone tipoTelefone) {

@@ -1,5 +1,5 @@
 package enums;
 
 public enum TipoTelefone {
-    Celular, Residencial, Comercial;
+    CELULAR, RESIDENCIAL, COMERCIAL;
 }
