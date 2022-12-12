@@ -1,12 +1,11 @@
 package model;
 
 import enums.TipoContato;
+import util.ConsoleUIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import model.Telefone;
-import ui.AgendaUI;
 
 public class Contato {
     
@@ -24,7 +23,7 @@ public class Contato {
     }
 
     public Contato (String nome, String sobreNome) {
-        this(nome, sobreNome, TipoContato.PESSOAL);
+        this(nome, sobreNome, TipoContato.Pessoal);
     }
 
     public Contato(String nome, Telefone telefone){
@@ -90,17 +89,18 @@ public class Contato {
     }
 
     public String exibirContato() {
-            String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
-            String exibirTelefones="Telefones \n" + exibirTelefones();
-            String exibirEnderecos="Endereços \n" + exibirEnderecos();
-            String contatoDetalhado= exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+            String exibirTipoContato = "Tipo de contato | " + getTipoContato() + "\n";
+            String exibirNomes = "Nome Completo: " + getNomeCompleto() + "\n";
+            String exibirTelefones="Telefones: \n" + exibirTelefones() + "\n";
+            String exibirEnderecos="Endereços: \n" + exibirEnderecos() + "\n";
+            String contatoDetalhado=  exibirTipoContato + exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
     return contatoDetalhado;
     }
 
     public String exibirTelefones() {
         String exibirTelefones="";
         for (int i = 0; i < telefones.size(); i++) {
-            exibirTelefones += i+" - "+ telefones.get(i).getTelefoneDetalhado() +"\n";
+            exibirTelefones += i + " - " + telefones.get(i).getTelefoneDetalhado() +"\n";
         }
         return exibirTelefones;
    }

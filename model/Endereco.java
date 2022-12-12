@@ -79,12 +79,9 @@ public class Endereco {
     }
 
     public String getEnderecosDetalhado() {
-        return (logradouro +" " +
-                numero +" " +
-                cidade +" " +
-                estado +" "+
-                cep +" "+
-                tipoEndereco);
+        return "Tipo de Endereco | " + tipoEndereco + ": " + logradouro +
+                " - " + numero + ", " + cidade + " - " + estado +
+                " - CEP:" + cep.substring(0,5) + "-" + cep.substring(5,7);
     }
     
     public String getEnderecosSimples() {

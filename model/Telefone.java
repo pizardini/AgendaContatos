@@ -13,7 +13,7 @@ public class Telefone {
     }
 
     public Telefone (String numero) {
-        this ("", numero, TipoTelefone.CELULAR);
+        this ("", numero, TipoTelefone.Celular);
     }
 
     public Telefone(String ddd, String numero, TipoTelefone tipoTelefone) {
@@ -47,7 +47,7 @@ public class Telefone {
     }
 
     public String getTelefoneDetalhado() {
-        String detalhado = "("+ddd+") " + numero +" "+ tipoTelefone;
+        String detalhado = "Tipo de Telefone | " + tipoTelefone + ": " + "("+ddd+") " + numero;
         if (ddd.isBlank()) {
             detalhado = numero + tipoTelefone;
         }
