@@ -82,7 +82,7 @@ public class AgendaUI {
 //                }
 //                escrever.close();  deixar comentário para apresentação
                 FileOutputStream fos = new FileOutputStream(path);
-                ObjectOutputStream oos = new ObjectOutputStream(fos, StandardCharsets.UTF_8);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(agenda);
                 oos.flush();
                 System.out.println("Lista salva em: " + path.getPath());
@@ -91,7 +91,7 @@ public class AgendaUI {
             case 5 -> {
                 File path = new File("agenda.txt");
                 FileInputStream fis = new FileInputStream(path);
-                ObjectInputStream ois = new ObjectInputStream(fis, StandardCharsets.UTF_8);
+                ObjectInputStream ois = new ObjectInputStream(fis);
                 agenda = (List<Contato>) ois.readObject();
                 System.out.println("Lista carregada com sucesso.");
             }
