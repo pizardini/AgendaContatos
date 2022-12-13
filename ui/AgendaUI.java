@@ -25,7 +25,7 @@ public class AgendaUI {
     public void menu () throws IOException, ClassNotFoundException {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato", "Remover todos os contatos",
-        "Exportar lista de contatos", "importar lista de contatos", "Sair da agenda");
+        "Exportar lista de contatos", "Importar lista de contatos", "Salvar e sair da agenda");
 
         switch (opcao) {
             case 0 -> {//add contato
@@ -55,9 +55,9 @@ public class AgendaUI {
             }
             case 2 -> {//buscar contato
                 if(agendaNaoVazia()){
-                    String palavraAProcurar = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato a ser buscado", 3);
+                    String palavraAProcurar = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato a ser buscado:", 3);
                     buscarContato(palavraAProcurar);
-                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser detalhado") -1;
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser exibido:") -1;
                     editarContato(idContato);
                 }
             }
@@ -80,7 +80,10 @@ public class AgendaUI {
                 importarArquivoTXT();
             }
 
-            case 6 -> System.exit(0);
+            case 6 -> {
+                exportarArquivoTXT();
+                System.exit(0);
+            }
         }
 
     }
@@ -91,8 +94,8 @@ public class AgendaUI {
             exibirContato(agenda.get(idContato));
             if(agendaNaoVazia()){
                 int opcaoEditar = ConsoleUIHelper.askChooseOption("Digite a opção desejada:"
-                ,"adicionar um telefone do contato","remover um telefone do contato",
-                "adicionar um endereço do contato","remover um endereço do contato","Remover este contato","Retornar ao menu inicial");
+                ,"Adicionar um telefone ao contato","Remover um telefone do contato",
+                "Adicionar um endereço do contato","Remover um endereço do contato","Remover este contato","Retornar ao menu inicial");
                 switch (opcaoEditar){
                     case 0 ->{//adicionar um telefone a um contato;
                         if(agendaNaoVazia()){
@@ -194,7 +197,7 @@ public class AgendaUI {
             case 1 -> {
                 tipoEndereco = TipoEndereco.COMERCIAL;
             }
-            case 2 -> System.out.println("endereço em branco");
+            case 2 -> System.out.println("Endereço em branco.");
         }
 
         Endereco endereco = new Endereco(cep, logradouro, numero, cidade, estado, tipoEndereco);
@@ -218,7 +221,7 @@ public class AgendaUI {
         if(contato.getTelefones().size()>0){
             List<Telefone> telefonestemp= new ArrayList<>();
             System.out.println(contato.exibirTelefones());
-            Integer idTelefone = ConsoleUIHelper.askInt("Digite o ID do telefone a ser removido") ;
+            Integer idTelefone = ConsoleUIHelper.askInt("Digite o ID do telefone a ser removido:") ;
             contato.getTelefones().set(idTelefone,null);
             for (Telefone item : contato.getTelefones()) {
                 if(item != null){
@@ -237,7 +240,7 @@ public class AgendaUI {
             List<Endereco> enderecosTemp = new ArrayList<>();
             System.out.println(contato.exibirEnderecos());
 
-            Integer idEndereco = ConsoleUIHelper.askInt("Digite o ID do endereço a ser removido") ;
+            Integer idEndereco = ConsoleUIHelper.askInt("Digite o ID do endereço a ser removido:") ;
             contato.getEnderecos().set(idEndereco,null);
             for (Endereco item : contato.getEnderecos()) {
                 if(item != null){
@@ -332,8 +335,9 @@ public class AgendaUI {
             String stringArq = agenda.get(i).toFile();
 
             escrever.println(stringArq);
-            System.out.println("Lista salva em: " + path.getPath());
+
         }
+        System.out.println("Lista salva em: " + path.getPath());
         escrever.close();
     }
 
@@ -351,6 +355,7 @@ public class AgendaUI {
         while ((linha = leitor.readLine()) != null) {
             String lido = linha;
             String dados[] = lido.split(":");
+
             String nome = dados[0];
             String sobrenome = dados[1];
             TipoContato tipoContato = TipoContato.valueOf(dados[2]);

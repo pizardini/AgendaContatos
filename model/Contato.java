@@ -91,8 +91,8 @@ public class Contato implements Serializable {
     public void exibirContato() {
         String exibirTipoContato = "Tipo de contato | " + getTipoContato() + "\n";
         String exibirNomes = "Nome Completo: " + getNomeCompleto() + "\n";
-        String exibirTelefones="Telefones: \n" + exibirTelefones() + "\n";
-        String exibirEnderecos="Endereços: \n" + exibirEnderecos() + "\n";
+        String exibirTelefones="Telefones: \n" + exibirTelefones();
+        String exibirEnderecos="Endereços: \n" + exibirEnderecos();
         String contatoDetalhado=  exibirTipoContato + exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
         System.out.println(contatoDetalhado);
     }

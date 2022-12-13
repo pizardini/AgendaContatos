@@ -1,4 +1,6 @@
-Pietro:Zardini:PESSOAL:rua dos bobos:0:barretos:sp:147833-0:RESIDENCIAL:21:982888310:CELULAR
-Igor:Manuel:PESSOAL:Avenida João Pinheiro:604:Araguaína:TO:77808-020:RESIDENCIAL:63:99479-8108:CELULAR
-Luiza:regina:PESSOAL:Rua Antônio Mafezzolli:677:Brusque:SC:88351-370:RESIDENCIAL:47:98929-8234:CELULAR
-Joaquim:Matheus Osvaldo:PESSOAL:Rua São Paulo:955:Porto Velho:RO:76804-468:RESIDENCIAL:69:99509-7648:CELULAR
+Pietro:Zardini:PESSOAL:0:barretos:sp:147833-0:rua dos bobos:RESIDENCIAL:21:982888310:CELULAR
+Igor:Manuel:PESSOAL:604:Araguaína:TO:77808-020:Avenida João Pinheiro:RESIDENCIAL:63:99479-8108:CELULAR
+Luiza:regina:PESSOAL:677:Brusque:SC:88351-370:Rua Antônio Mafezzolli:RESIDENCIAL:47:98929-8234:CELULAR
+Joaquim:Matheus Osvaldo:PESSOAL:955:Porto Velho:RO:76804-468:Rua São Paulo:RESIDENCIAL:69:99509-7648:CELULAR
+pedro:roma:PESSOAL::
+arthur:silva:PESSOAL::
