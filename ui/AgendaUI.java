@@ -10,7 +10,6 @@ import util.ConsoleUIHelper;
 
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class AgendaUI {
     public void menu () throws IOException, ClassNotFoundException {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato", "Remover todos os contatos",
-        "Exportar lista de contatos", "Importar lista de contatos", "Sair da agenda");
+        "Exportar lista de contatos", "importar lista de contatos", "Sair da agenda");
 
         switch (opcao) {
             case 0 -> {//add contato
@@ -74,26 +73,65 @@ public class AgendaUI {
                 }
             }
 
-            case 4 -> {
-                File path = new File("agenda.txt");
-//                PrintWriter escrever = new PrintWriter(new FileOutputStream(arq, false));
-//                for (int i = 0; i < agenda.size(); i++) {
-//                    escrever.println(agenda.get(i)+"\n");
-//                }
-//                escrever.close();  deixar comentário para apresentação
-                FileOutputStream fos = new FileOutputStream(path);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(agenda);
-                oos.flush();
-                System.out.println("Lista salva em: " + path.getPath());
+            case 4 -> { //Exportação do arquivo em bytes
+//                File path = new File("agenda.bin");
+//                FileOutputStream fos = new FileOutputStream(path);
+//                ObjectOutputStream oos = new ObjectOutputStream(fos);
+//                oos.writeObject(agenda);
+//                oos.flush();
+//                System.out.println("Lista salva em: " + path.getPath());
+                File path = new File("agenda.txt"); //Exportação de arquivo em texto
+                PrintWriter escrever = new PrintWriter(new FileOutputStream(path, false));
+                for (int i = 0; i < agenda.size(); i++) {
+                    String stringArq = agenda.get(i).toFile().replace("]", ":");
+                    stringArq = stringArq+"final";
+                    stringArq.replace(":final", "");
+                    escrever.println(stringArq);
+                    System.out.println(stringArq);
+                }
+                escrever.close();
+
             }
 
-            case 5 -> {
+//            case 5 -> { //Importação de arquivo em ‘bytes’
+//                File path = new File("agenda.bin");
+//                FileInputStream fis = new FileInputStream(path);
+//                ObjectInputStream ois = new ObjectInputStream(fis);
+//                agenda = (List<Contato>) ois.readObject();
+//                System.out.println("Lista carregada com sucesso.");
+//            }
+
+            case 5 -> { //Importação de arquivo em texto
                 File path = new File("agenda.txt");
-                FileInputStream fis = new FileInputStream(path);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                agenda = (List<Contato>) ois.readObject();
-                System.out.println("Lista carregada com sucesso.");
+                FileReader fr = new FileReader(path);
+                BufferedReader leitor = new BufferedReader(fr);
+                String linha;
+                while ((linha = leitor.readLine()) != null) {
+                    String lido = linha;
+                    String dados[] = lido.split(":");
+                    String nome = dados[0];
+                    String sobrenome = dados[1];
+                    TipoContato tipoContato = TipoContato.valueOf(dados[2]);
+                    String logradouro = dados[3];
+                    String n = dados[4];
+                    String cidade = dados[5];
+                    String estado = dados[6];
+                    String cep = dados[7];
+                    TipoEndereco tipoendereco = TipoEndereco.valueOf(dados[8]);
+                    String ddd = dados[9];
+                    String numero = dados[10];
+                    TipoTelefone tipoTelefone = TipoTelefone.valueOf(dados[11]);
+
+                    Contato contato = new Contato(nome, sobrenome, tipoContato);
+                    agenda.add(contato);
+                    Telefone telefone = new Telefone(ddd, numero, tipoTelefone);
+                    agenda.get(contatoPosition(contato)).addTelefone(telefone);
+                    Endereco endereco = new Endereco(logradouro, n, cidade, estado, cep, tipoendereco);
+                    agenda.get(contatoPosition(contato)).addEndereco(endereco);
+                }
+                System.out.println("Lista de contatos importada com sucesso");
+                leitor.close();
+                fr.close();
             }
 
             case 6 -> System.exit(0);

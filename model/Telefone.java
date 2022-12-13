@@ -66,12 +66,14 @@ public class Telefone implements Serializable {
 
     @Override
     public String toString() {
-        return "Telefone{" +
-                "ddd='" + ddd + '\'' +
-                ", numero='" + numero + '\'' +
-                ", tipoTelefone=" + tipoTelefone +
-                '}';
+//        return "Telefone{" +
+//                "ddd='" + ddd + '\'' +
+//                ", numero='" + numero + '\'' +
+//                ", tipoTelefone=" + tipoTelefone +
+//                '}';
+        return ddd + ":" + numero +  ":"  + tipoTelefone;
     }
+
 
     @Override
     public boolean equals(Object o) {

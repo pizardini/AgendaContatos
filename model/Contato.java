@@ -159,6 +159,11 @@ public class Contato implements Serializable {
                 ", telefones=" + telefones +
                 '}';
     }
+    public String toFile() {
+        String ends = enderecos.toString().substring(1);
+        String tels = telefones.toString().substring(1);
+        return nome + ":" + sobrenome + ":" + tipoContato + ":" + ends + tels;
+    }
 
     @Override
     public int hashCode() {
