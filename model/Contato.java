@@ -149,6 +149,16 @@ public class Contato implements Serializable {
         return true;
     }
 
+    public String toFile() {
+        String endFormatado = enderecos.toString().substring(1);
+        String telFormatado = telefones.toString().substring(1);
+        String contatoFormatado = nome + ":" + sobrenome + ":" + tipoContato + ":" + endFormatado + telFormatado;
+        contatoFormatado = contatoFormatado.replace("]", ":");
+        contatoFormatado = contatoFormatado+"final";
+        contatoFormatado = contatoFormatado.replace(":final", "");
+        return contatoFormatado;
+    }
+
     @Override
     public String toString() {
         return "Contato{" +
@@ -158,11 +168,6 @@ public class Contato implements Serializable {
                 ", enderecos=" + enderecos +
                 ", telefones=" + telefones +
                 '}';
-    }
-    public String toFile() {
-        String ends = enderecos.toString().substring(1);
-        String tels = telefones.toString().substring(1);
-        return nome + ":" + sobrenome + ":" + tipoContato + ":" + ends + tels;
     }
 
     @Override
