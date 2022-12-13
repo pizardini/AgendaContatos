@@ -9,6 +9,8 @@ import model.Telefone;
 import util.ConsoleUIHelper;
 
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +23,10 @@ public class AgendaUI {
 
 
 
-    public void menu () {
+    public void menu () throws IOException, ClassNotFoundException {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato", "Remover todos os contatos",
-        "Sair da agenda");
+        "Exportar lista de contatos", "Importar lista de contatos", "Sair da agenda");
 
         switch (opcao) {
             case 0 -> {//add contato
@@ -38,7 +40,7 @@ public class AgendaUI {
                             adicionarEndereco(contato);
                         }
                         System.out.println();
-                        
+
                         contato.exibirContato();
 
                     }
@@ -71,11 +73,33 @@ public class AgendaUI {
                     ConsoleUIHelper.drawHeader("Todos os contatos foram removidos da agenda com sucesso!", 80);
                 }
             }
-            case 4 -> System.exit(0);
+
+            case 4 -> {
+                File path = new File("agenda.txt");
+//                PrintWriter escrever = new PrintWriter(new FileOutputStream(arq, false));
+//                for (int i = 0; i < agenda.size(); i++) {
+//                    escrever.println(agenda.get(i)+"\n");
+//                }
+//                escrever.close();  deixar comentário para apresentação
+                FileOutputStream fos = new FileOutputStream(path);
+                ObjectOutputStream oos = new ObjectOutputStream(fos, StandardCharsets.UTF_8);
+                oos.writeObject(agenda);
+                oos.flush();
+                System.out.println("Lista salva em: " + path.getPath());
+            }
+
+            case 5 -> {
+                File path = new File("agenda.txt");
+                FileInputStream fis = new FileInputStream(path);
+                ObjectInputStream ois = new ObjectInputStream(fis, StandardCharsets.UTF_8);
+                agenda = (List<Contato>) ois.readObject();
+                System.out.println("Lista carregada com sucesso.");
+            }
+
+            case 6 -> System.exit(0);
         }
 
     }
-
     public void editarContato(Integer idContato) {
         boolean continuar = true;
         while(continuar){
@@ -123,7 +147,7 @@ public class AgendaUI {
                     case 5 ->{//retornar ao menu inicial
                         continuar = false;
                     }
-    
+
                 }
             }
 

@@ -2,10 +2,12 @@ package model;
 
 import enums.TipoContato;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contato {
+
+public class Contato implements Serializable {
     
     private String nome;
     private String sobrenome;

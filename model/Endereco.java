@@ -2,9 +2,10 @@ package model;
 
 import enums.TipoEndereco;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Endereco {
+public class Endereco implements Serializable {
     private String cep;
     private String logradouro;
     private String numero;

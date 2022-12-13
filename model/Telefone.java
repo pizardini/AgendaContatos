@@ -2,9 +2,11 @@ package model;
 
 import enums.TipoTelefone;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Telefone {
+
+public class Telefone implements Serializable {
     private String ddd;
     private String numero;
     private TipoTelefone tipoTelefone;
