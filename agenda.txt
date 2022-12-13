@@ -1,6 +1,8 @@
-Pietro:Zardini:PESSOAL:0:barretos:sp:147833-0:rua dos bobos:RESIDENCIAL:21:982888310:CELULAR
-Igor:Manuel:PESSOAL:604:Araguaína:TO:77808-020:Avenida João Pinheiro:RESIDENCIAL:63:99479-8108:CELULAR
-Luiza:regina:PESSOAL:677:Brusque:SC:88351-370:Rua Antônio Mafezzolli:RESIDENCIAL:47:98929-8234:CELULAR
-Joaquim:Matheus Osvaldo:PESSOAL:955:Porto Velho:RO:76804-468:Rua São Paulo:RESIDENCIAL:69:99509-7648:CELULAR
-pedro:roma:PESSOAL::
-arthur:silva:PESSOAL::
+Pietro:Zardini:PESSOAL:Endereco{cep='0', logradouro='barretos', numero='sp', cidade='147833-0', estado='rua dos bobos', tipoEndereco=RESIDENCIAL}, Endereco{cep='0', logradouro='barretos', numero='sp', cidade='147833-0', estado='rua dos bobos', tipoEndereco=RESIDENCIAL}:Telefone{ddd='21', numero='982888310', tipoTelefone=CELULAR}, Telefone{ddd='21', numero='982888310', tipoTelefone=CELULAR}
+Igor:Manuel:PESSOAL:Endereco{cep='604', logradouro='Araguaína', numero='TO', cidade='77808-020', estado='Avenida João Pinheiro', tipoEndereco=RESIDENCIAL}, Endereco{cep='604', logradouro='Araguaína', numero='TO', cidade='77808-020', estado='Avenida João Pinheiro', tipoEndereco=RESIDENCIAL}:Telefone{ddd='63', numero='99479-8108', tipoTelefone=CELULAR}, Telefone{ddd='63', numero='99479-8108', tipoTelefone=CELULAR}
+Luiza:regina:PESSOAL:Endereco{cep='677', logradouro='Brusque', numero='SC', cidade='88351-370', estado='Rua Antônio Mafezzolli', tipoEndereco=RESIDENCIAL}, Endereco{cep='677', logradouro='Brusque', numero='SC', cidade='88351-370', estado='Rua Antônio Mafezzolli', tipoEndereco=RESIDENCIAL}:Telefone{ddd='47', numero='98929-8234', tipoTelefone=CELULAR}, Telefone{ddd='47', numero='98929-8234', tipoTelefone=CELULAR}
+Joaquim:Matheus Osvaldo:PESSOAL:Endereco{cep='955', logradouro='Porto Velho', numero='RO', cidade='76804-468', estado='Rua São Paulo', tipoEndereco=RESIDENCIAL}, Endereco{cep='955', logradouro='Porto Velho', numero='RO', cidade='76804-468', estado='Rua São Paulo', tipoEndereco=RESIDENCIAL}:Telefone{ddd='69', numero='99509-7648', tipoTelefone=CELULAR}, Telefone{ddd='69', numero='99509-7648', tipoTelefone=CELULAR}
+Pietro:Zardini:PESSOAL::
+Igor:Manuel:PESSOAL::
+Luiza:regina:PESSOAL::
+Joaquim:Matheus Osvaldo:PESSOAL::

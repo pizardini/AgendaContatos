@@ -321,7 +321,7 @@ public class AgendaUI {
 
     }
 
-    private void exportarArquivoTXT() throws FileNotFoundException {
+    public void exportarArquivoTXT() throws FileNotFoundException {
         //Exportação do arquivo em bytes
 //                File path = new File("agenda.bin");
 //                FileOutputStream fos = new FileOutputStream(path);
@@ -341,7 +341,7 @@ public class AgendaUI {
         escrever.close();
     }
 
-    private void importarArquivoTXT() throws IOException {
+    public void importarArquivoTXT() throws IOException {
         //Importação de arquivo em ‘bytes’
 //                File path = new File("agenda.bin");
 //                FileInputStream fis = new FileInputStream(path);

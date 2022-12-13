@@ -11,6 +11,7 @@ public class App {
         System.out.println();
         
         do  {
+            agenda.importarArquivoTXT();
             ConsoleUIHelper.drawHeader("AGENDA", 80);
             agenda.menu();
         }
