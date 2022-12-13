@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaUI {
-    // private static List<Contato> agenda;
+    private List<Contato> agenda;
 
-    // public AgendaUI(){
-    //     this.agenda = new ArrayList<>();
-    // }
-    static List<Contato> agenda = new ArrayList<>();
-
+    public AgendaUI(){
+        this.agenda = new ArrayList<>();
+    }
 
 
-    public static void menu () {
+
+    public void menu () {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato", "Remover todos os contatos",
         "Sair da agenda");
@@ -77,7 +76,7 @@ public class AgendaUI {
 
     }
 
-    public static void editarContato(Integer idContato) {
+    public void editarContato(Integer idContato) {
         boolean continuar = true;
         while(continuar){
             exibirContato(agenda.get(idContato));
@@ -123,11 +122,6 @@ public class AgendaUI {
                     }
                     case 5 ->{//retornar ao menu inicial
                         continuar = false;
-                        
-    
-                    }
-                    case 6 ->{// listar todos os enderecos //listar todos os telefones
-    
                     }
     
                 }
@@ -136,7 +130,7 @@ public class AgendaUI {
         }
     }
 
-    public static Contato adicionarContato(Contato contato) {
+    public Contato adicionarContato(Contato contato) {
         String nome = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato:", 3);
         String sobrenome = ConsoleUIHelper.askNoEmptyInput("Digite o sobrenome do contato:", 3);
         int tipo = ConsoleUIHelper.askChooseOption("Digite o tipo de contato: ", "Pessoal", "Profissional");
@@ -158,7 +152,7 @@ public class AgendaUI {
         }
     }
 
-    public static void adicionarTelefone(Contato contato) {
+    public void adicionarTelefone(Contato contato) {
         TipoTelefone tipoTelefone = TipoTelefone.CELULAR;
         String ddd = ConsoleUIHelper.askSimpleInput("Digite o DDD: ");
         String numero = ConsoleUIHelper.askNoEmptyInput("Digite o número: ", 3);
@@ -180,7 +174,7 @@ public class AgendaUI {
         }
     }
 
-    public static void adicionarEndereco(Contato contato) {
+    public void adicionarEndereco(Contato contato) {
         String logradouro = ConsoleUIHelper.askSimpleInput("Digite o logradouro: ");
         String numero = ConsoleUIHelper.askSimpleInput("Digite o número da edificação: ");
         String cidade = ConsoleUIHelper.askSimpleInput("Digite a cidade: ");
@@ -204,7 +198,7 @@ public class AgendaUI {
         }
     }
 
-    public static void removerContato(Integer idARemover) {
+    public void removerContato(Integer idARemover) {
         List<Contato> agendaTemp = new ArrayList<>();
         agenda.set(idARemover, null);
         for (Contato item : agenda) {
@@ -215,7 +209,7 @@ public class AgendaUI {
         agenda = agendaTemp;
     }
 
-    public static void removerTelefone(Contato contato) {
+    public void removerTelefone(Contato contato) {
         if(contato.getTelefones().size()>0){
             List<Telefone> telefonestemp= new ArrayList<>();
             System.out.println(contato.exibirTelefones());
@@ -233,8 +227,7 @@ public class AgendaUI {
 
     }
 
-    public static void removerEndereco(Contato contato) {
-        // ********** testa funcao
+    public void removerEndereco(Contato contato) {
         if(contato.getEnderecos().size() > 0){
             List<Endereco> enderecosTemp = new ArrayList<>();
             System.out.println(contato.exibirEnderecos());
@@ -252,7 +245,7 @@ public class AgendaUI {
             ConsoleUIHelper.drawHeader("Esse contato não possui endereços cadastrados", 80);
         }
     }
-    public static void listarContato() {
+    public void listarContato() {
 
         ConsoleUIHelper.drawHeader("Lista de contatos", 80);
         System.out.println();
@@ -260,7 +253,7 @@ public class AgendaUI {
             System.out.println(i+1 + " - " + agenda.get(i).getNomeCompleto());
         }
     }
-    public static void buscarContato(String palavra) {
+    public void buscarContato(String palavra) {
         List<Contato> contatosEncontrados = new ArrayList<>();
 
         for (int i = 0; i < agenda.size(); i++) {
@@ -284,14 +277,14 @@ public class AgendaUI {
         }
 
     }
-    public static void exibirContato(Contato contato) {
+    public void exibirContato(Contato contato) {
         ConsoleUIHelper.drawLine(80);
         contato.exibirContato();
         ConsoleUIHelper.drawLine(80);
 
     }
 
-    public static boolean checarContato(Contato contato) {
+    public boolean checarContato(Contato contato) {
         for (Contato item: agenda) {
             if (item.equals(contato)) {
                 ConsoleUIHelper.drawHeader("Contato já cadastrado nesta agenda",80);
@@ -301,7 +294,7 @@ public class AgendaUI {
         return true;
     }
 
-    public static boolean agendaNaoVazia() {
+    public boolean agendaNaoVazia() {
         if(agenda.size()>0){
             return true;
         }
@@ -311,7 +304,7 @@ public class AgendaUI {
         }
     }
 
-    public static int contatoPosition(Contato contato) {
+    public int contatoPosition(Contato contato) {
         String nomeCompletoString = contato.getNomeCompleto();
         for (int index = 0; index < agenda.size(); index++) {
             if(agenda.get(index).getNomeCompleto().equals(nomeCompletoString)){
@@ -320,11 +313,5 @@ public class AgendaUI {
         }
         return -2;
     }
-
-//    public static void gravarContato(Contato contato, List<Contato> agenda) {
-
-//        agenda.add(contato);
-
-//    }
 
 }

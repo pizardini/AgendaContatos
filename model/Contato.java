@@ -1,11 +1,9 @@
 package model;
 
 import enums.TipoContato;
-import util.ConsoleUIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Contato {
     
