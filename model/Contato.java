@@ -88,13 +88,13 @@ public class Contato {
         this.enderecos.add(endereco);
     }
 
-    public String exibirContato() {
-            String exibirTipoContato = "Tipo de contato | " + getTipoContato() + "\n";
-            String exibirNomes = "Nome Completo: " + getNomeCompleto() + "\n";
-            String exibirTelefones="Telefones: \n" + exibirTelefones() + "\n";
-            String exibirEnderecos="Endereços: \n" + exibirEnderecos() + "\n";
-            String contatoDetalhado=  exibirTipoContato + exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
-    return contatoDetalhado;
+    public void exibirContato() {
+        String exibirTipoContato = "Tipo de contato | " + getTipoContato() + "\n";
+        String exibirNomes = "Nome Completo: " + getNomeCompleto() + "\n";
+        String exibirTelefones="Telefones: \n" + exibirTelefones() + "\n";
+        String exibirEnderecos="Endereços: \n" + exibirEnderecos() + "\n";
+        String contatoDetalhado=  exibirTipoContato + exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+        System.out.println(contatoDetalhado);
     }
 
     public String exibirTelefones() {
@@ -161,15 +161,48 @@ public class Contato {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Contato contato = (Contato) o;
-        return Objects.equals(nome, contato.nome) && Objects.equals(sobrenome, contato.sobrenome) && tipoContato == contato.tipoContato && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(nome, sobrenome, tipoContato, enderecos, telefones);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Contato other = (Contato) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (sobrenome == null) {
+            if (other.sobrenome != null)
+                return false;
+        } else if (!sobrenome.equals(other.sobrenome))
+            return false;
+        return true;
     }
+
+    // @Override
+    // public boolean equals(Object o) {
+    //     if (this == o) return true;
+    //     if (o == null || getClass() != o.getClass()) return false;
+    //     Contato contato = (Contato) o;
+    //     return Objects.equals(nome, contato.nome) && Objects.equals(sobrenome, contato.sobrenome) && tipoContato == contato.tipoContato && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+    // }
+
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(nome, sobrenome, tipoContato, enderecos, telefones);
+    // }
+    
+
 }

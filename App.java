@@ -10,11 +10,12 @@ public class App {
 
     public static void main(String[] args) {
         // AgendaUI agenda = new AgendaUI();
-        ConsoleUIHelper.drawHeader("AGENDA", 80);
+        // agenda.menu();
         System.out.println();
-
+        
         do  {
-
+            
+            ConsoleUIHelper.drawHeader("AGENDA", 80);
             AgendaUI.menu();
 
         }

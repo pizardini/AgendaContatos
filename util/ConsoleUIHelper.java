@@ -39,6 +39,8 @@ public class ConsoleUIHelper {
                 choose = sc.nextInt();
             } catch (InputMismatchException e) {
                 choose = -9;
+                System.out.println("Digite uma opção válida");
+                sc.nextLine();
             }
         } while (choose < 0 || choose >= options.length);
         return choose;
