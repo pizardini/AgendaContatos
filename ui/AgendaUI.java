@@ -49,9 +49,6 @@ public class AgendaUI {
                 if(agendaNaoVazia()){
                     listarContato();
                     ConsoleUIHelper.drawLine(80);
-                    System.out.println();
-                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser exibido") -1;
-                    editarContato(idContato);
 
                 }
 
@@ -149,7 +146,6 @@ public class AgendaUI {
                 switch (opcaoEditar){
                     case 0 ->{//adicionar um telefone a um contato;
                         if(agendaNaoVazia()){
-                            // listarContato();
                             Contato contato = agenda.get(idContato);
                             adicionarTelefone(contato);
                             exibirContato(agenda.get(idContato));
@@ -157,26 +153,22 @@ public class AgendaUI {
                     }
                     case 1 -> {//Remover um telefone de um contato da agenda
                         if(agendaNaoVazia()){
-                            // listarContato();
                             removerTelefone(agenda.get(idContato));
                         }
                     }
                     case 2 -> {//Adicionar um endereço a um contato
                         if(agendaNaoVazia()){
-                            listarContato();
                             Contato contato = agenda.get(idContato);
                             adicionarEndereco(contato);
                         }
                     }
                     case 3 -> {//Remover um endereço de um contato da agenda
                         if(agendaNaoVazia()){
-                            listarContato();
                             removerEndereco(agenda.get(idContato));
                         }
                     }
                     case 4 -> {//remover esse contato
                         if (agendaNaoVazia()) {
-                            listarContato();
                             removerContato(idContato);
                             ConsoleUIHelper.drawHeader("Contato removido com sucesso!", 80);
                             continuar = false;
@@ -184,6 +176,7 @@ public class AgendaUI {
                     }
                     case 5 ->{//retornar ao menu inicial
                         continuar = false;
+                        break;
                     }
 
                 }
@@ -307,13 +300,47 @@ public class AgendaUI {
             ConsoleUIHelper.drawHeader("Esse contato não possui endereços cadastrados", 80);
         }
     }
+
     public void listarContato() {
 
         ConsoleUIHelper.drawHeader("Lista de contatos", 80);
+        //Definir paginação padrão
+        int tamanhoPagina = 5;
+        int posicaoAtual = 0;
         System.out.println();
-        for (int i = 0; i < agenda.size(); i++) {
-            System.out.println(i+1 + " - " + agenda.get(i).getNomeCompleto());
-        }
+        listarPaginado(posicaoAtual,tamanhoPagina).forEach( contato -> {
+            System.out.println(contatoPosition(contato) +" - "+ contato.getNomeCompleto());
+        });
+        ConsoleUIHelper.drawLine(80);
+        System.out.println();
+        Integer opcaoPagina;
+        do {
+            opcaoPagina = ConsoleUIHelper.askChooseOption("Selecione a opção desejada", "Exibir contato", "Próxima página", "Voltar ao menu inicial");
+            switch (opcaoPagina) {
+                case 0 -> {
+                    ConsoleUIHelper.drawLine(80);
+                    System.out.println();
+                    Integer idContato = ConsoleUIHelper.askInt("Digite o ID do contato a ser exibido:");
+                    editarContato(idContato);
+                    break;
+                }
+                case 1 -> {
+                    ConsoleUIHelper.drawHeader("Lista de contatos", 80);
+                    posicaoAtual += tamanhoPagina;
+                    listarPaginado(posicaoAtual, tamanhoPagina).forEach(contato -> {
+                        System.out.println(contatoPosition(contato) + " - " + contato.getNomeCompleto());
+                    });
+                    ConsoleUIHelper.drawLine(80);
+                    System.out.println();
+                }
+                case 2 -> {
+                    opcaoPagina = 2;
+                    break;
+                }
+            }
+        } while (opcaoPagina == 1);
+
+
     }
     public void buscarContato(String palavra) {
         List<Contato> contatosEncontrados = new ArrayList<>();
@@ -339,7 +366,8 @@ public class AgendaUI {
         }
 
     }
-    public void exibirContato(Contato contato) {
+
+   public void exibirContato(Contato contato) {
         ConsoleUIHelper.drawLine(80);
         contato.exibirContato();
         ConsoleUIHelper.drawLine(80);
@@ -374,6 +402,29 @@ public class AgendaUI {
             }
         }
         return -2;
+    }
+
+    public List<Contato> listarPaginado (int start, int quantidade) {
+        List<Contato> contatosEncontrados = new ArrayList<>();
+        if (start < 0 || start >= agenda.size()) {
+            start = 0;
+        }
+        if (quantidade < 0) {
+            quantidade = 0;
+        }
+        if (quantidade > agenda.size()) {
+            quantidade = agenda.size();
+        }
+        if (start+quantidade >= agenda.size()) {
+            quantidade = (agenda.size() - start);
+        }
+        for (int i = start; i < start + quantidade; i++) {
+            if(i == agenda.size()) {
+                break;
+            }
+            contatosEncontrados.add(agenda.get(i));
+        }
+        return contatosEncontrados;
     }
 
 }
