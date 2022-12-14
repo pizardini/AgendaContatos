@@ -9,7 +9,7 @@ public class App {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         AgendaUI agenda = new AgendaUI();
         System.out.println();
-        agenda.importarArquivoTXT();
+        //agenda.importarArquivoTXT();
 
         do  {
             ConsoleUIHelper.drawHeader("AGENDA", 80);
