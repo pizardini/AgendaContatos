@@ -25,7 +25,7 @@ public class AgendaUI {
     public void menu () throws IOException, ClassNotFoundException {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada:",
         "Adicionar um novo contato", "Listar contatos","Buscar contato", "Remover todos os contatos",
-        "Exportar lista de contatos", "Importar lista de contatos", "Salvar e sair da agenda");
+        "Exportar lista de contatos", "Importar lista de contatos", "Salvar e sair da agenda","Sair da agenda");
 
         switch (opcao) {
             case 0 -> {//add contato
@@ -83,6 +83,11 @@ public class AgendaUI {
             case 6 -> {
                 exportarArquivoTXT();
                 System.exit(0);
+            }
+            case 7 -> {
+                if (ConsoleUIHelper.askConfirm("Tem certeza que deseja sair sem salvar? Todas as suas alterações serão perdidas.","Sim", "Não")) {
+                    System.exit(0);
+                };
             }
         }
 
