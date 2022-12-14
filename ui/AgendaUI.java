@@ -337,7 +337,7 @@ public class AgendaUI {
             escrever.println(stringArq);
 
         }
-        System.out.println("Lista salva em: " + path.getPath());
+        System.out.println("Lista salva em: " + System.getProperty("user.dir"));
         escrever.close();
     }
 
