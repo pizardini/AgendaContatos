@@ -2,7 +2,10 @@ package model;
 
 import enums.TipoEndereco;
 
-public class Endereco {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Endereco implements Serializable {
     private String cep;
     private String logradouro;
     private String numero;
@@ -77,12 +80,9 @@ public class Endereco {
     }
 
     public String getEnderecosDetalhado() {
-        return (logradouro +" " +
-                numero +" " +
-                cidade +" " +
-                estado +" "+
-                cep +" "+
-                tipoEndereco);
+        return "Tipo de Endereco | " + tipoEndereco + ": " + logradouro +
+                " - " + numero + ", " + cidade + " - " + estado +
+                " - CEP:" + cep;
     }
     
     public String getEnderecosSimples() {
@@ -91,13 +91,27 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" +
-                "cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", numero='" + numero + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", tipoEndereco=" + tipoEndereco +
-                '}';
+//        return "Endereco{" +
+//                "cep='" + cep + '\'' +
+//                ", logradouro='" + logradouro + '\'' +
+//                ", numero='" + numero + '\'' +
+//                ", cidade='" + cidade + '\'' +
+//                ", estado='" + estado + '\'' +
+//                ", tipoEndereco=" + tipoEndereco +
+//                '}';
+        return logradouro + ":" + numero + ":" + cidade + ":" + estado + ":" + cep + ":" + tipoEndereco;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(cep, endereco.cep) && Objects.equals(logradouro, endereco.logradouro) && Objects.equals(numero, endereco.numero) && Objects.equals(cidade, endereco.cidade) && Objects.equals(estado, endereco.estado) && tipoEndereco == endereco.tipoEndereco;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep, logradouro, numero, cidade, estado, tipoEndereco);
     }
 }

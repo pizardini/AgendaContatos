@@ -1,28 +1,21 @@
-import model.Contato;
-import model.Telefone;
 import ui.AgendaUI;
 import util.ConsoleUIHelper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+
 
 public class App {
 
-    public static void main(String[] args) {
-        // AgendaUI agenda = new AgendaUI();
-        ConsoleUIHelper.drawHeader("AGENDA", 80);
-        ConsoleUIHelper.fillVSpace(0, 80);
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        AgendaUI agenda = new AgendaUI();
+        System.out.println();
+        //agenda.importarArquivoTXT();
 
         do  {
-
-            AgendaUI.menu();
-
+            ConsoleUIHelper.drawHeader("AGENDA", 80);
+            agenda.menu();
         }
         while (true);
-
-
-
-
 
     }
 

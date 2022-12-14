@@ -2,9 +2,11 @@ package model;
 
 import enums.TipoTelefone;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Telefone {
+
+public class Telefone implements Serializable {
     private String ddd;
     private String numero;
     private TipoTelefone tipoTelefone;
@@ -47,7 +49,7 @@ public class Telefone {
     }
 
     public String getTelefoneDetalhado() {
-        String detalhado = "("+ddd+") " + numero +" "+ tipoTelefone;
+        String detalhado = "Tipo de Telefone | " + tipoTelefone + ": " + "("+ddd+") " + numero;
         if (ddd.isBlank()) {
             detalhado = numero + tipoTelefone;
         }
@@ -64,12 +66,14 @@ public class Telefone {
 
     @Override
     public String toString() {
-        return "Telefone{" +
-                "ddd='" + ddd + '\'' +
-                ", numero='" + numero + '\'' +
-                ", tipoTelefone=" + tipoTelefone +
-                '}';
+//        return "Telefone{" +
+//                "ddd='" + ddd + '\'' +
+//                ", numero='" + numero + '\'' +
+//                ", tipoTelefone=" + tipoTelefone +
+//                '}';
+        return ddd + ":" + numero +  ":"  + tipoTelefone;
     }
+
 
     @Override
     public boolean equals(Object o) {

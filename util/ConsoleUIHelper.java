@@ -39,6 +39,8 @@ public class ConsoleUIHelper {
                 choose = sc.nextInt();
             } catch (InputMismatchException e) {
                 choose = -9;
+                ConsoleUIHelper.drawHeader("Digite uma opção válida", 80);
+                sc.nextLine();
             }
         } while (choose < 0 || choose >= options.length);
         return choose;
@@ -86,7 +88,7 @@ public class ConsoleUIHelper {
             int limit = Math.min(text.length(), width - 4);
             String row = text.substring(0, limit);
             text = text.substring(row.length());
-            row = "# " + row + String.valueOf(pad).repeat(width - row.length() - 4) + " #";
+            row = "_ " + row + String.valueOf(pad).repeat(width - row.length() - 4) + " _";
             System.out.println(row);
             count++;
         } while (!text.isEmpty());
@@ -100,8 +102,8 @@ public class ConsoleUIHelper {
             String row = text.substring(0, limit);
             text = text.substring(row.length());
             int padding = (width - row.length()) / 2;
-            row = "#" + " ".repeat(padding-1) + row;
-            row = row + " ".repeat(width - row.length() - 1) + "#";
+            row = "_" + " ".repeat(padding-1) + row;
+            row = row + " ".repeat(width - row.length() - 1) + "_";
             System.out.println(row);
             count++;
         } while (!text.isEmpty());
@@ -115,7 +117,7 @@ public class ConsoleUIHelper {
     }
 
     public static void drawLine(int width) {
-        System.out.println("#".repeat(width));
+        System.out.println("_".repeat(width));
     }
 
     public static void fillVSpace(int lines, int width) {

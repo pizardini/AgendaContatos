@@ -2,13 +2,12 @@ package model;
 
 import enums.TipoContato;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import model.Telefone;
-import ui.AgendaUI;
 
-public class Contato {
+
+public class Contato implements Serializable {
     
     private String nome;
     private String sobrenome;
@@ -89,18 +88,19 @@ public class Contato {
         this.enderecos.add(endereco);
     }
 
-    public String exibirContato() {
-            String exibirNomes = "Nome Completo \n" + getNomeCompleto() +" "+ tipoContato ;
-            String exibirTelefones="Telefones \n" + exibirTelefones();
-            String exibirEnderecos="Endereços \n" + exibirEnderecos();
-            String contatoDetalhado= exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
-    return contatoDetalhado;
+    public void exibirContato() {
+        String exibirTipoContato = "Tipo de contato | " + getTipoContato() + "\n";
+        String exibirNomes = "Nome Completo: " + getNomeCompleto() + "\n";
+        String exibirTelefones="Telefones: \n" + exibirTelefones();
+        String exibirEnderecos="Endereços: \n" + exibirEnderecos();
+        String contatoDetalhado=  exibirTipoContato + exibirNomes +"\n" + exibirTelefones + "\n" + exibirEnderecos;
+        System.out.println(contatoDetalhado);
     }
 
     public String exibirTelefones() {
         String exibirTelefones="";
         for (int i = 0; i < telefones.size(); i++) {
-            exibirTelefones += i+" - "+ telefones.get(i).getTelefoneDetalhado() +"\n";
+            exibirTelefones += i + " - " + telefones.get(i).getTelefoneDetalhado() +"\n";
         }
         return exibirTelefones;
    }
@@ -129,6 +129,35 @@ public class Contato {
        return exibirEnderecos;
   }
 
+  public boolean checarTelefone(Telefone telefone) {
+      for (Telefone item: telefones) {
+          if (item.equals(telefone)) {
+              System.out.println("Telefone já cadastrado neste contato");
+              return false;
+          }//comparando com objeto, ou seja mesmo telefone de tipos diferentes são diferentes.
+      }
+      return true;
+  }
+
+    public boolean checarEndereco(Endereco endereco) {
+        for (Endereco item: enderecos) {
+            if (item.equals(endereco)) {
+                System.out.println("Endereço já cadastrado neste contato");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String toFile() {
+        String endFormatado = enderecos.toString().substring(1);
+        String telFormatado = telefones.toString().substring(1);
+        String contatoFormatado = nome + ":" + sobrenome + ":" + tipoContato + ":" + endFormatado + telFormatado;
+        contatoFormatado = contatoFormatado.replace("]", ":");
+        contatoFormatado = contatoFormatado+"final";
+        contatoFormatado = contatoFormatado.replace(":final", "");
+        return contatoFormatado;
+    }
 
     @Override
     public String toString() {
@@ -142,15 +171,48 @@ public class Contato {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Contato contato = (Contato) o;
-        return Objects.equals(nome, contato.nome) && Objects.equals(sobrenome, contato.sobrenome) && tipoContato == contato.tipoContato && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((sobrenome == null) ? 0 : sobrenome.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(nome, sobrenome, tipoContato, enderecos, telefones);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Contato other = (Contato) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (sobrenome == null) {
+            if (other.sobrenome != null)
+                return false;
+        } else if (!sobrenome.equals(other.sobrenome))
+            return false;
+        return true;
     }
+
+    // @Override
+    // public boolean equals(Object o) {
+    //     if (this == o) return true;
+    //     if (o == null || getClass() != o.getClass()) return false;
+    //     Contato contato = (Contato) o;
+    //     return Objects.equals(nome, contato.nome) && Objects.equals(sobrenome, contato.sobrenome) && tipoContato == contato.tipoContato && Objects.equals(enderecos, contato.enderecos) && Objects.equals(telefones, contato.telefones);
+    // }
+
+    // @Override
+    // public int hashCode() {
+    //     return Objects.hash(nome, sobrenome, tipoContato, enderecos, telefones);
+    // }
+    
+
 }
