@@ -2,6 +2,15 @@
 Project for the OOP II module of Ada Tech's Full Stack Web course. 
 
 
+
+    Título é obrigatório
+    Resumo é obrigatório e tem no máximo 500 caracteres
+    Sumário é de tamanho livre.
+    Preço é obrigatório e o mínimo é de 20
+    Número de páginas é obrigatória e o mínimo é de 100
+    Isbn é obrigatório, formato livre
+    Data que vai entrar no ar precisa ser no futu
+
 Enunciado
 
 Utilizando os conceitos de orientação à objetos, crie um sistema de agenda de contato.
