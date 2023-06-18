@@ -18,10 +18,10 @@ O armazenamento de endereços deve permitir incluir separamente as informações
 
 O sistema deve permitir a interação com o usuário com as seguintes ações:
 
-a. Adicionar um contato e seus dados;
-b. Listar todos os contatos da agenda;
+a. Adicionar um contato e seus dados
+b. Listar todos os contatos da agenda
 c. Buscar um contato de acordo com uma palavra chave (Utilize os dados de nome, sobrenome para realizar a busca)
-d. Remover um contato da agenda;
+d. Remover um contato da agenda
 e. Remover todos os contatos da agenda;
 f. Adicionar um telefone a um contato;
 g. Adicionar um endereço a um contato;
