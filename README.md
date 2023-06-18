@@ -49,20 +49,3 @@ RN1: O sistema não deve permitir adicionar um contato com os mesmos dados de ou
 RN2: O sistema não teve permitir adicionar um telefone com os mesmos dados de outro telefone já existente no mesmo contato.
 
 RN3: O sistema não teve permitir adicionar um endereço com os mesmos dados de outro endereço já existente no mesmo contato.
-Formato de desenvolvimento:
-
-O projeto deve ser desenvolvido em grupo, no formato squad, onde todos são responsáveis igualmente pela entrega de todo o projeto.
-
-O grupo é livre para decidir com serão divididas as responsabilidades durante o desenvolvimento.
-Entrega:
-
-A entrega do projeto deve ser feita no GIT, constando os commits feitos por todos, mergeado na branch principal.
-
-Além da entrega do código fonte do projeto no GIT, o grupo deverá fazer uma apresentação do trabalho para os demais grupos, essa apresentação terá uma duração total de 10 minutos e deve constar:
-
-    Um relatório de todos os requisitos que puderam ser desenvolvidos em sua totalidade;
-    Um relatório de todos os requisitos que NÃO puderam ser desenvolvidos por alguma dificuldade técnica ou por escolha do time;
-    Partes do projeto que foram particularmente difíceis;
-    Partes do projeto que foram particularmente interessantes;
-    Alguma parte que tenha sido feita de forma diferente ou inusitada;
-    Uma demonstração do sistema executando e funcionando corretamente com os requisitos implementados.
