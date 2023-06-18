@@ -3,7 +3,7 @@ Project for the OOP II module of Ada Tech's Full Stack Web course.
 
 
 
-    Título é obrigatório
+    A agenda deve permitir armazenar multiplos contatos, contendo pelo menos as informações de nome e sobrenome.
     Resumo é obrigatório e tem no máximo 500 caracteres
     Sumário é de tamanho livre.
     Preço é obrigatório e o mínimo é de 20
@@ -15,11 +15,11 @@ Enunciado
 
 Utilizando os conceitos de orientação à objetos, crie um sistema de agenda de contato.
 
-A agenda deve permitir armazenar multiplos contatos, contendo pelo menos as informações de nome e sobrenome.
-Um contato pode possuir múltiplos telefones.
-Um contato pode possuir múltiplos endereços.
-O armazenamento de telefones deve permitir incluir separadamente as informações de DDD e número.
-O armazenamento de endereços deve permitir incluir separamente as informações de CEP, logradouro, número, cidade e estado.
+    A agenda deve permitir armazenar multiplos contatos, contendo pelo menos as informações de nome e sobrenome.
+    Um contato pode possuir múltiplos telefones.
+    Um contato pode possuir múltiplos endereços.
+    O armazenamento de telefones deve permitir incluir separadamente as informações de DDD e número.
+    O armazenamento de endereços deve permitir incluir separamente as informações de CEP, logradouro, número, cidade e estado.
 
 O sistema deve permitir a interação com o usuário com as seguintes ações:
 
