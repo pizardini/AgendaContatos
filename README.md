@@ -1,16 +1,6 @@
 # AgendaContatos
 Project for the OOP II module of Ada Tech's Full Stack Web course. 
 
-
-
-    A agenda deve permitir armazenar multiplos contatos, contendo pelo menos as informações de nome e sobrenome.
-    Resumo é obrigatório e tem no máximo 500 caracteres
-    Sumário é de tamanho livre.
-    Preço é obrigatório e o mínimo é de 20
-    Número de páginas é obrigatória e o mínimo é de 100
-    Isbn é obrigatório, formato livre
-    Data que vai entrar no ar precisa ser no futu
-
 Enunciado
 
 Utilizando os conceitos de orientação à objetos, crie um sistema de agenda de contato.
@@ -23,15 +13,11 @@ Utilizando os conceitos de orientação à objetos, crie um sistema de agenda de
 
 O sistema deve permitir a interação com o usuário com as seguintes ações:
 
-Adicionar um contato e seus dados
-
-Listar todos os contatos da agenda
-
-Buscar um contato de acordo com uma palavra chave (Utilize os dados de nome, sobrenome para realizar a busca)
-
-Remover um contato da agenda
-
-Remover todos os contatos da agenda;
+    Adicionar um contato e seus dados
+    Listar todos os contatos da agenda
+    Buscar um contato de acordo com uma palavra chave (Utilize os dados de nome, sobrenome para realizar a busca)
+    Remover um contato da agenda
+    Remover todos os contatos da agenda;
 
 Adicionar um telefone a um contato;
 
