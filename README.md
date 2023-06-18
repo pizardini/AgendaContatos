@@ -18,7 +18,6 @@ O sistema deve permitir a interação com o usuário com as seguintes ações:
     Buscar um contato de acordo com uma palavra chave (Utilize os dados de nome, sobrenome para realizar a busca)
     Remover um contato da agenda
     Remover todos os contatos da agenda;
-
     Adicionar um telefone a um contato;
     Adicionar um endereço a um contato;
     Remover um telefone de um contato da agenda;
